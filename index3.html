@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="UTf-8">
+    <title>title</title>
+</head>
+<body>
+    <div id="app">
+        <p>你是{{message}}</p>
+        <p>你的电话是{{tel}}</p>
+        <p>{{grant("night")}}</p>
+        <p>{{grant1("牛肉面")}}</p>
+        <p>
+            <a v-bind:href="website">百度</a>
+        </p>
+        
+        <p v-html="websitetag"></p>
+        <p><input type="text" v-bind:value="message"></p>
+        <p>{{tel}}</p>
+        <button @click.once="add(1)">add</button>
+        <button v-on:click="jian(1)">jian</button>
+        <button @dblclick="add(10)">add ten</button><!--@click/v-on:click为绑定事件-->
+        <button v-on:dblclick="jian(10)">jian ten</button>
+        <p v-on:mousemove="shijian">wer</p>
+        <input type="text" v-model="ggg"><!--v-model数据双向绑定-->
+        <span>{{ggg}}</span>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data(){
+                return{
+                    ggg:"",
+                    message:"mrliu",
+                    tel:17309909828,
+                    website:"https://www.baidu.com",
+                    websitetag:"<a href='https://www.taobao.com'>淘宝</a>"
+                };
+            },
+            methods:{
+                grant(time){
+                    // return this.tel+"good morning"
+                    return `good ${time} ${this.tel}`
+                },
+                grant1(time1){
+                    return `吃饭了吗${time1}`
+                },
+                add(num){
+                    this.tel+=num;
+                },
+                jian(num){
+                    this.tel-=num;
+                },
+                shijian(event){
+                    console.log(event);
+                },
+                // ggg(){
+                //     console.log(111111)
+                // }
+            }
+        })
+    </script>
+</body>
+</html>
